@@ -1,0 +1,14 @@
+.card__video {
+    width: 350px;
+    height: 230px;
+    border-radius: 36px;
+    display: flex;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 320px) {
+    .card__video {
+        max-width: 100%;
+    }
+}

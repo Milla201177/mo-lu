@@ -1,0 +1,13 @@
+.card__item {
+    margin: 0;
+    position: relative;
+    text-decoration: none;
+    color: white;
+}
+
+@media screen and (max-width: 320px) {
+    .card__item {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
