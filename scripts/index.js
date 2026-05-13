@@ -155,8 +155,8 @@ function enhanceAlbumNavigation() {
     const backLink = document.createElement('a');
     backLink.className = 'header__back';
     backLink.href = homePagePath;
-    backLink.textContent = 'Назад к проектам';
-    backLink.setAttribute('aria-label', 'Назад к проектам');
+    backLink.textContent = 'Back';
+    backLink.setAttribute('aria-label', 'Back');
 
     headerElement.prepend(backLink);
 }
@@ -169,7 +169,6 @@ if (cardImages.length) {
 
 enhanceAlbumNavigation();
 enhanceImagePopup();
-
 
 
 

@@ -1,5 +1,5 @@
 .page {
-    background-color: #000;
+    background-color: transparent;
     color: white;
     font-family: 'Inter', 'Arial', sans-serif;
     width: min(1100px, calc(100% - 48px));
@@ -15,13 +15,13 @@
     position: fixed;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.82)),
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 28%),
+        linear-gradient(180deg, rgba(8, 8, 8, 0.36), rgba(8, 8, 8, 0.68)),
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 24%),
         url("../../images/background-texture.png") center/cover no-repeat;
-    opacity: 0.72;
-    filter: contrast(1.12) brightness(0.72);
+    opacity: 0.96;
+    filter: contrast(1.08) brightness(0.9);
     pointer-events: none;
-    z-index: -2;
+    z-index: -1;
 }
 
 .page::after {
@@ -29,8 +29,8 @@
     position: fixed;
     inset: 0;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 24%),
-        radial-gradient(circle at center, transparent 48%, rgba(0, 0, 0, 0.38) 100%);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 20%),
+        radial-gradient(circle at center, transparent 42%, rgba(0, 0, 0, 0.22) 100%);
     pointer-events: none;
     z-index: -1;
 }
