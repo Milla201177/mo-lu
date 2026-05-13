@@ -1,14 +1,15 @@
 .card__video {
-    width: 350px;
-    height: 230px;
+    width: 100%;
+    aspect-ratio: 35 / 23;
     border-radius: 36px;
     display: flex;
     cursor: pointer;
-    object-fit: contain;
+    object-fit: cover;
+    transition: transform 0.45s ease, filter 0.35s ease, box-shadow 0.35s ease;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 880px) {
     .card__video {
-        max-width: 100%;
+        border-radius: 28px;
     }
 }

@@ -2,6 +2,45 @@
     background-color: #000;
     color: white;
     font-family: 'Inter', 'Arial', sans-serif;
-    max-width: 1100px;
+    width: min(1100px, calc(100% - 48px));
     margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+}
+
+.page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.82)),
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 28%),
+        url("../../images/background-texture.png") center/cover no-repeat;
+    opacity: 0.72;
+    filter: contrast(1.12) brightness(0.72);
+    pointer-events: none;
+    z-index: -2;
+}
+
+.page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 24%),
+        radial-gradient(circle at center, transparent 48%, rgba(0, 0, 0, 0.38) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.page_locked {
+    overflow: hidden;
+}
+
+@media screen and (max-width: 880px) {
+    .page {
+        width: min(100%, calc(100% - 24px));
+    }
 }

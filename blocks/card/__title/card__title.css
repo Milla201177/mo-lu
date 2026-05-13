@@ -3,11 +3,13 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    word-break: break-word;
 }
 
 
 @media screen and (max-width: 880px) {
     .card__title {
-        font-size: 18px;
+        font-size: 17px;
+        line-height: 21px;
     }
 }

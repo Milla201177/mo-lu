@@ -4,14 +4,13 @@
     align-items: center;
     justify-content: center;
     position: fixed;
+    inset: 0;
     overflow: hidden;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    background-color: rgba( 0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(10px);
     opacity: 0;
-    transition: height 0s 1s, opacity 1s 0s;
-    height: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+    z-index: 20;
 }
-

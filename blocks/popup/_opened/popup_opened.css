@@ -1,5 +1,6 @@
 .popup_opened {
     opacity: 1;
-    height: 100%;
-    transition: height 0s 0s, opacity 1s 0s;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
 }

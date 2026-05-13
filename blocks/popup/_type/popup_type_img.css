@@ -1,3 +1,5 @@
 .popup_type_img {
-    background-color: rgba(0,0,0,0.9);
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 38%),
+        rgba(0, 0, 0, 0.88);
 }

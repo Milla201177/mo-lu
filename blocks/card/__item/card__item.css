@@ -3,11 +3,23 @@
     position: relative;
     text-decoration: none;
     color: white;
+    width: 100%;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.card__item:hover {
+    transform: translateY(-8px);
+}
+
+.card__item:hover .card__img,
+.card__item:hover .card__video {
+    transform: scale(1.03);
+    filter: brightness(1.06);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
 }
 
 @media screen and (max-width: 320px) {
     .card__item {
-        max-width: 320px;
-        margin: 0 auto;
+        max-width: 100%;
     }
 }
