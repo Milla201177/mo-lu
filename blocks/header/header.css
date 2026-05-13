@@ -2,10 +2,48 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+}
+
+.header__back {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.88);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: transform 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+}
+
+.header__back::before {
+    content: "\2190";
+    font-size: 18px;
+    line-height: 1;
+}
+
+.header__back:hover,
+.header__back:focus-visible {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+.header__back:focus-visible {
+    outline: none;
 }
 
 @media screen and (max-width: 880px) {
     .header {
-        margin: 20px;
+        margin: 16px 0 0;
+    }
+
+    .header__back {
+        margin-top: 8px;
+        font-size: 12px;
+        line-height: 16px;
     }
 }

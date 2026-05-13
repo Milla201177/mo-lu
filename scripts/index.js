@@ -2,6 +2,8 @@ const popupImgElement = document.querySelector('.popup_type_img');
 const popupImg = popupImgElement?.querySelector('.popup__img');
 const popupImgCloseElement = popupImgElement?.querySelector('.popup__close_type_img');
 const cardImages = Array.from(document.querySelectorAll('.card__img'));
+const headerElement = document.querySelector('.header');
+const homePagePath = '../../index.html';
 
 let currentImageIndex = 0;
 let popupPrevButton;
@@ -142,15 +144,31 @@ function enhanceImagePopup() {
     updatePopupNavigationState();
 }
 
+function enhanceAlbumNavigation() {
+    const albumTitle = document.querySelector('.profile__title');
+    const homeLink = headerElement?.querySelector('.profile__name[href]');
+
+    if (!headerElement || !albumTitle || !homeLink) {
+        return;
+    }
+
+    const backLink = document.createElement('a');
+    backLink.className = 'header__back';
+    backLink.href = homePagePath;
+    backLink.textContent = 'Назад к проектам';
+    backLink.setAttribute('aria-label', 'Назад к проектам');
+
+    headerElement.prepend(backLink);
+}
+
 if (cardImages.length) {
     cardImages.forEach((img) => {
         img.addEventListener('click', openCardImage);
     });
 }
 
+enhanceAlbumNavigation();
 enhanceImagePopup();
-
-
 
 
 

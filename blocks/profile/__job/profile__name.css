@@ -11,6 +11,18 @@
     max-width: 295px;
     text-decoration: none;
     color: white;
+    transition: opacity 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
+}
+
+a.profile__name:hover,
+a.profile__name:focus-visible {
+    opacity: 1;
+    transform: translateY(-1px);
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.22);
+}
+
+a.profile__name:focus-visible {
+    outline: none;
 }
 
 @media screen and (max-width: 880px) {
