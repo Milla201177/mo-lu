@@ -4,6 +4,9 @@
     line-height: 24px;
     margin: 0;
     padding-bottom: 15px;
+}
+
+.page_album .profile__title {
     width: 100%;
     text-align: center;
 }

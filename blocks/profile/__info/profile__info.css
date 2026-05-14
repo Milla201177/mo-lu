@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.page_album .profile__info {
+    width: 100%;
+}
+
 @media screen and (max-width: 880px) {
     .profile__info {
         flex-direction: column;
