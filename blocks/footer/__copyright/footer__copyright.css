@@ -4,6 +4,17 @@
     font-size: 18px;
     line-height: 22px;
     margin: 0;
+    text-decoration: none;
+    transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+a.footer__copyright:hover,
+a.footer__copyright:focus-visible {
+    color: #8a9499;
+}
+
+a.footer__copyright:focus-visible {
+    outline: none;
 }
 
 @media screen and (max-width: 880px) {

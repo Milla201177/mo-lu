@@ -7,16 +7,17 @@
     transition: opacity 0.25s ease;
 }
 
-.card__item:hover .card__img,
-.card__item:focus-visible .card__img,
-.card__item:hover .card__video {
-    box-shadow: inset 0 0 0 3px #2f3a40;
-    filter: brightness(0.97);
+a.card__item:hover .card__video,
+a.card__item:focus-visible .card__video {
+    transform: scale(1.035);
+    filter: brightness(1.04);
 }
 
-.card__item:focus-visible .card__video {
+div.card__item:hover .card__img,
+div.card__item:focus-visible .card__img {
     box-shadow: inset 0 0 0 3px #2f3a40;
     filter: brightness(0.97);
+    transform: scale(0.985);
 }
 
 .card__item:focus-visible {

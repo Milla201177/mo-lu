@@ -5,5 +5,5 @@
     display: flex;
     cursor: pointer;
     object-fit: cover;
-    transition: filter 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
 }
