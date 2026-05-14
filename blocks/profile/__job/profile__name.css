@@ -27,7 +27,7 @@ a.profile__name:focus-visible {
 
 @media screen and (max-width: 880px) {
     .profile__name {
-        padding: 0;
+        padding: 16px 0;
         font-size: 22px;
         line-height: 22px;
     }

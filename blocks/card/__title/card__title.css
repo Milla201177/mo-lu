@@ -6,6 +6,17 @@
     word-break: break-word;
 }
 
+.card__title:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.card__title:last-child {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    word-break: normal;
+}
+
 
 @media screen and (max-width: 880px) {
     .card__title {
