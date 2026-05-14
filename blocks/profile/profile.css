@@ -8,6 +8,11 @@
     padding-bottom: 42px;
 }
 
+.page_album .profile {
+    position: relative;
+    padding-top: 74px;
+}
+
 @media screen and (max-width: 880px) {
     .profile {
         flex-direction: column;
@@ -15,5 +20,9 @@
         gap: 24px;
         width: 100%;
         padding-bottom: 28px;
+    }
+
+    .page_album .profile {
+        padding-top: 0;
     }
 }

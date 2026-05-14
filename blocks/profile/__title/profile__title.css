@@ -7,8 +7,13 @@
 }
 
 .page_album .profile__title {
-    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: max-content;
+    max-width: calc(100% - 40px);
     text-align: center;
+    transform: translateX(-50%);
 }
 
 @media screen and (max-width: 880px) {
@@ -16,5 +21,12 @@
         font-size: 20px;
         line-height: 24px;
         padding-bottom: 10px;
+    }
+
+    .page_album .profile__title {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        transform: none;
     }
 }
