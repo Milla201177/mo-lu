@@ -15,9 +15,9 @@ a.card__item:focus-visible .card__video {
 
 div.card__item:hover .card__img,
 div.card__item:focus-visible .card__img {
-    box-shadow: inset 0 0 0 3px #2f3a40;
-    filter: brightness(0.97);
-    transform: scale(0.985);
+    box-shadow: inset 0 0 0 4px #66727a;
+    filter: brightness(0.93);
+    transform: scale(0.97);
 }
 
 .card__item:focus-visible {

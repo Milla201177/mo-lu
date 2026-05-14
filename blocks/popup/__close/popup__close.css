@@ -2,28 +2,26 @@
     position: absolute;
     top: max(20px, env(safe-area-inset-top));
     right: max(20px, env(safe-area-inset-right));
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     display: grid;
     place-items: center;
     padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
-    background: rgba(7, 7, 7, 0.62);
-    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    border: 0;
+    background: transparent;
+    transition: transform 0.25s ease, opacity 0.25s ease;
     z-index: 2;
 }
 
 .popup__close:hover {
-    transform: scale(1.08) rotate(90deg);
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.35);
+    transform: scale(1.08);
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 880px) {
     .popup__close {
-        width: 46px;
-        height: 46px;
+        width: 40px;
+        height: 40px;
         top: max(14px, env(safe-area-inset-top));
         right: max(14px, env(safe-area-inset-right));
     }

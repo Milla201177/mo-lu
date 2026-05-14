@@ -112,7 +112,7 @@ function createNavigationButton(direction, label, step) {
     button.type = 'button';
     button.className = `popup__nav popup__nav_type_${direction} content__button`;
     button.setAttribute('aria-label', label);
-    button.innerHTML = `<span class="popup__nav-icon" aria-hidden="true">${direction === 'prev' ? '&larr;' : '&rarr;'}</span>`;
+    button.innerHTML = `<span class="popup__nav-icon" aria-hidden="true">${direction === 'prev' ? '&#10094;' : '&#10095;'}</span>`;
     button.addEventListener('click', (evt) => {
         evt.stopPropagation();
         showNextImage(step);
@@ -169,7 +169,6 @@ if (cardImages.length) {
 
 enhanceAlbumNavigation();
 enhanceImagePopup();
-
 
 
 
