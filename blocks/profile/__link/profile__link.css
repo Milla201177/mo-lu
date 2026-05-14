@@ -10,6 +10,14 @@
     transition: opacity 0.25s ease, color 0.25s ease;
 }
 
+.page_album .profile__link {
+    font-weight: 300;
+}
+
+.profile__link-role {
+    font-weight: 600;
+}
+
 a.profile__link:hover,
 a.profile__link:focus-visible {
     color: rgba(255, 255, 255, 0.78);

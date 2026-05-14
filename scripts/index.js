@@ -189,6 +189,77 @@ function enhanceAlbumNavigation() {
     headerElement.prepend(backLink);
 }
 
+function splitProfileLabel(text) {
+    const normalizedText = text.replace(/\s+/g, ' ').trim();
+    const separatorMatch = normalizedText.match(/^(.+?)(\s*[—-]\s*)(.+)$/);
+
+    if (separatorMatch) {
+        return {
+            label: separatorMatch[1].trim(),
+            separator: separatorMatch[2],
+            rest: separatorMatch[3].trim(),
+        };
+    }
+
+    const keywordMatch = normalizedText.match(/^(By|by|based on|Director|Set|Light(?:ing)?|Composer|Video(?: and Lighting)?|Video artist(?:s)?|Sound design|Costume designer|Set designers|Set & costume designer|Set & costumes design|Multimedia director|multimedia director|Photographer|Scenario|Choreographer|Musical designer|illustrator|choreograph|Object and costume design|inclusive theatre project|theater|Theater)\b/i);
+
+    if (!keywordMatch) {
+        return null;
+    }
+
+    const nameStartMatch = normalizedText.slice(keywordMatch[0].length).match(/\s+(?=[A-ZА-ЯЁ][^\s]+(?:\s+[A-ZА-ЯЁ(][^\s]+)?)/);
+
+    if (!nameStartMatch) {
+        return {
+            label: normalizedText,
+            separator: '',
+            rest: '',
+        };
+    }
+
+    const splitIndex = keywordMatch[0].length + nameStartMatch.index;
+
+    return {
+        label: normalizedText.slice(0, splitIndex).trim(),
+        separator: ' ',
+        rest: normalizedText.slice(splitIndex).trim(),
+    };
+}
+
+function enhanceAlbumMetadata() {
+    const albumTitle = document.querySelector('.profile__title');
+    const profileLinks = Array.from(document.querySelectorAll('.profile__link'));
+
+    if (!albumTitle || !profileLinks.length) {
+        return;
+    }
+
+    document.body.classList.add('page_album');
+
+    profileLinks.forEach((link) => {
+        const parts = splitProfileLabel(link.textContent || '');
+
+        if (!parts || !parts.label) {
+            return;
+        }
+
+        const roleSpan = document.createElement('span');
+        roleSpan.className = 'profile__link-role';
+        roleSpan.textContent = parts.label;
+
+        link.textContent = '';
+        link.append(roleSpan);
+
+        if (parts.separator) {
+            link.append(document.createTextNode(parts.separator));
+        }
+
+        if (parts.rest) {
+            link.append(document.createTextNode(parts.rest));
+        }
+    });
+}
+
 if (cardImages.length) {
     cardImages.forEach((img) => {
         img.addEventListener('click', openCardImage);
@@ -196,4 +267,5 @@ if (cardImages.length) {
 }
 
 enhanceAlbumNavigation();
+enhanceAlbumMetadata();
 enhanceImagePopup();
