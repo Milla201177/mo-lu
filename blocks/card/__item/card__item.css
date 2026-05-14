@@ -4,7 +4,19 @@
     text-decoration: none;
     color: white;
     width: 100%;
+    overflow: hidden;
     transition: opacity 0.25s ease;
+}
+
+div.card__item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 4px solid #80888d;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+    box-sizing: border-box;
 }
 
 a.card__item:hover .card__video,
@@ -15,9 +27,13 @@ a.card__item:focus-visible .card__video {
 
 div.card__item:hover .card__img,
 div.card__item:focus-visible .card__img {
-    box-shadow: inset 0 0 0 4px #66727a;
-    filter: brightness(0.93);
-    transform: scale(0.97);
+    filter: brightness(0.9);
+    transform: scale(0.965);
+}
+
+div.card__item:hover::after,
+div.card__item:focus-visible::after {
+    opacity: 1;
 }
 
 .card__item:focus-visible {

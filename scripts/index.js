@@ -8,6 +8,8 @@ const homePagePath = '../../index.html';
 let currentImageIndex = 0;
 let popupPrevButton;
 let popupNextButton;
+let touchStartX = 0;
+let touchDeltaX = 0;
 
 function openPopup(item) {
     if (!item) {
@@ -121,6 +123,33 @@ function createNavigationButton(direction, label, step) {
     return button;
 }
 
+function handleTouchStart(evt) {
+    const [touch] = evt.changedTouches;
+
+    if (!touch) {
+        return;
+    }
+
+    touchStartX = touch.clientX;
+    touchDeltaX = 0;
+}
+
+function handleTouchEnd(evt) {
+    const [touch] = evt.changedTouches;
+
+    if (!touch || !popupImgElement?.classList.contains('popup_opened')) {
+        return;
+    }
+
+    touchDeltaX = touch.clientX - touchStartX;
+
+    if (Math.abs(touchDeltaX) < 48) {
+        return;
+    }
+
+    showNextImage(touchDeltaX < 0 ? 1 : -1);
+}
+
 function enhanceImagePopup() {
     if (!popupImgElement || !popupImg || !popupImgCloseElement) {
         return;
@@ -139,6 +168,8 @@ function enhanceImagePopup() {
     popupImgCloseElement.addEventListener('click', () => {
         closePopup(popupImgElement);
     });
+    popupContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+    popupContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     popupContainer.append(popupPrevButton, popupNextButton);
     updatePopupNavigationState();
@@ -169,7 +200,6 @@ if (cardImages.length) {
 
 enhanceAlbumNavigation();
 enhanceImagePopup();
-
 
 
 

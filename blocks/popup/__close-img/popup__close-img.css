@@ -1,13 +1,14 @@
 .popup__close-img {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     display: block;
+    opacity: 0.78;
     filter: brightness(0) invert(1) drop-shadow(0 3px 12px rgba(0, 0, 0, 0.7));
 }
 
 @media screen and (max-width: 880px) {
     .popup__close-img {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
     }
 }
