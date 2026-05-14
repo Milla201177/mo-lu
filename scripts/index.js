@@ -196,12 +196,12 @@ function splitProfileLabel(text) {
     if (separatorMatch) {
         return {
             label: separatorMatch[1].trim(),
-            separator: separatorMatch[2],
+            separator: ' - ',
             rest: separatorMatch[3].trim(),
         };
     }
 
-    const keywordMatch = normalizedText.match(/^(By|by|based on|Director|Set|Light(?:ing)?|Composer|Video(?: and Lighting)?|Video artist(?:s)?|Sound design|Costume designer|Set designers|Set & costume designer|Set & costumes design|Multimedia director|multimedia director|Photographer|Scenario|Choreographer|Musical designer|illustrator|choreograph|Object and costume design|inclusive theatre project|theater|Theater)\b/i);
+    const keywordMatch = normalizedText.match(/^(Director|Set|Light(?:ing)?|Composer|Video(?: and Lighting)?|Video artist(?:s)?|Sound design|Costume designer|Set designers|Set & costume designer|Set & costumes design|Multimedia director|multimedia director|Photographer|Scenario|Choreographer|Musical designer|illustrator|choreograph|Object and costume design|inclusive theatre project|theater|Theater)\b/i);
 
     if (!keywordMatch) {
         return null;
@@ -221,9 +221,32 @@ function splitProfileLabel(text) {
 
     return {
         label: normalizedText.slice(0, splitIndex).trim(),
-        separator: ' ',
+        separator: ' - ',
         rest: normalizedText.slice(splitIndex).trim(),
     };
+}
+
+function appendVenueHighlight(link, text) {
+    const venueMatch = text.match(/\b(Theater|Theatre|theater|theatre)\b/);
+
+    if (!venueMatch || typeof venueMatch.index !== 'number') {
+        return false;
+    }
+
+    const before = text.slice(0, venueMatch.index);
+    const venueWord = venueMatch[0];
+    const after = text.slice(venueMatch.index + venueWord.length);
+    const roleSpan = document.createElement('span');
+
+    roleSpan.className = 'profile__link-role';
+    roleSpan.textContent = venueWord.charAt(0).toUpperCase() + venueWord.slice(1);
+
+    link.textContent = '';
+    link.append(document.createTextNode(before));
+    link.append(roleSpan);
+    link.append(document.createTextNode(after));
+
+    return true;
 }
 
 function enhanceAlbumMetadata() {
@@ -237,9 +260,11 @@ function enhanceAlbumMetadata() {
     document.body.classList.add('page_album');
 
     profileLinks.forEach((link) => {
-        const parts = splitProfileLabel(link.textContent || '');
+        const text = (link.textContent || '').replace(/\s+/g, ' ').trim();
+        const parts = splitProfileLabel(text);
 
         if (!parts || !parts.label) {
+            appendVenueHighlight(link, text);
             return;
         }
 
