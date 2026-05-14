@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.header_type_home {
+    margin-top: 20px;
+}
+
 .header__back {
     align-self: flex-start;
     display: inline-flex;
@@ -39,6 +43,10 @@
 @media screen and (max-width: 880px) {
     .header {
         margin: 16px 0 0;
+    }
+
+    .header_type_home {
+        margin-top: 16px;
     }
 
     .header__back {
