@@ -9,7 +9,6 @@ let currentImageIndex = 0;
 let popupPrevButton;
 let popupNextButton;
 let touchStartX = 0;
-let touchDeltaX = 0;
 
 function openPopup(item) {
     if (!item) {
@@ -131,17 +130,15 @@ function handleTouchStart(evt) {
     }
 
     touchStartX = touch.clientX;
-    touchDeltaX = 0;
 }
 
 function handleTouchEnd(evt) {
     const [touch] = evt.changedTouches;
+    const touchDeltaX = touch ? touch.clientX - touchStartX : 0;
 
     if (!touch || !popupImgElement?.classList.contains('popup_opened')) {
         return;
     }
-
-    touchDeltaX = touch.clientX - touchStartX;
 
     if (Math.abs(touchDeltaX) < 48) {
         return;
@@ -200,8 +197,3 @@ if (cardImages.length) {
 
 enhanceAlbumNavigation();
 enhanceImagePopup();
-
-
-
-
-

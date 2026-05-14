@@ -2,8 +2,8 @@
     width: 22px;
     height: 22px;
     display: block;
-    opacity: 0.78;
-    filter: brightness(0) invert(1) drop-shadow(0 3px 12px rgba(0, 0, 0, 0.7));
+    opacity: 0.68;
+    filter: brightness(0) invert(1) sepia(0.08) saturate(0.35) hue-rotate(175deg) brightness(0.62) drop-shadow(0 3px 12px rgba(0, 0, 0, 0.7));
 }
 
 @media screen and (max-width: 880px) {
