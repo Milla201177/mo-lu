@@ -7,8 +7,9 @@
 
 @media screen and (max-width: 880px) {
     .profile__text {
-        gap: 6px;
-        align-items: center;
-        text-align: center;
+        width: 100%;
+        gap: 12px;
+        align-items: flex-start;
+        text-align: left;
     }
 }
