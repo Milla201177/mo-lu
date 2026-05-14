@@ -16,6 +16,7 @@
 
 .profile__link-role {
     font-weight: 600;
+    font-size: 20px;
 }
 
 a.profile__link:hover,
@@ -35,5 +36,9 @@ a.profile__link:focus-visible {
         line-height: 24px;
         max-width: 100%;
         text-align: left;
+    }
+
+    .profile__link-role {
+        font-size: 17px;
     }
 }
