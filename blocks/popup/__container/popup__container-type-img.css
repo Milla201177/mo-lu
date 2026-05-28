@@ -7,6 +7,7 @@
     height: 100%;
     padding: 32px;
     box-sizing: border-box;
+    touch-action: pan-y pinch-zoom;
     opacity: 0;
     transform: scale(0.96);
     transition: transform 0.35s ease, opacity 0.35s ease;

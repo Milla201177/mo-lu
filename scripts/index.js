@@ -9,6 +9,13 @@ let currentImageIndex = 0;
 let popupPrevButton;
 let popupNextButton;
 let touchStartX = 0;
+let touchStartY = 0;
+let pointerStartX = 0;
+let pointerStartY = 0;
+let activePointerId = null;
+
+const SWIPE_MIN_DISTANCE = 48;
+const SWIPE_MAX_OFF_AXIS_DISTANCE = 80;
 
 function openPopup(item) {
     if (!item) {
@@ -130,21 +137,58 @@ function handleTouchStart(evt) {
     }
 
     touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
 }
 
 function handleTouchEnd(evt) {
     const [touch] = evt.changedTouches;
-    const touchDeltaX = touch ? touch.clientX - touchStartX : 0;
 
     if (!touch || !popupImgElement?.classList.contains('popup_opened')) {
         return;
     }
 
-    if (Math.abs(touchDeltaX) < 48) {
+    handleSwipe(touch.clientX - touchStartX, touch.clientY - touchStartY);
+}
+
+function handleSwipe(deltaX, deltaY) {
+    if (!popupImgElement?.classList.contains('popup_opened')) {
         return;
     }
 
-    showNextImage(touchDeltaX < 0 ? 1 : -1);
+    if (Math.abs(deltaX) < SWIPE_MIN_DISTANCE || Math.abs(deltaY) > SWIPE_MAX_OFF_AXIS_DISTANCE) {
+        return;
+    }
+
+    showNextImage(deltaX < 0 ? 1 : -1);
+}
+
+function handlePointerDown(evt) {
+    if (evt.isPrimary === false || evt.pointerType === 'mouse') {
+        return;
+    }
+
+    activePointerId = evt.pointerId;
+    pointerStartX = evt.clientX;
+    pointerStartY = evt.clientY;
+
+    if (evt.currentTarget.setPointerCapture) {
+        evt.currentTarget.setPointerCapture(evt.pointerId);
+    }
+}
+
+function handlePointerUp(evt) {
+    if (activePointerId !== evt.pointerId) {
+        return;
+    }
+
+    handleSwipe(evt.clientX - pointerStartX, evt.clientY - pointerStartY);
+    activePointerId = null;
+}
+
+function handlePointerCancel(evt) {
+    if (activePointerId === evt.pointerId) {
+        activePointerId = null;
+    }
 }
 
 function enhanceImagePopup() {
@@ -165,8 +209,14 @@ function enhanceImagePopup() {
     popupImgCloseElement.addEventListener('click', () => {
         closePopup(popupImgElement);
     });
-    popupContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
-    popupContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+    if (window.PointerEvent) {
+        popupContainer.addEventListener('pointerdown', handlePointerDown);
+        popupContainer.addEventListener('pointerup', handlePointerUp);
+        popupContainer.addEventListener('pointercancel', handlePointerCancel);
+    } else {
+        popupContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+        popupContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
 
     popupContainer.append(popupPrevButton, popupNextButton);
     updatePopupNavigationState();
