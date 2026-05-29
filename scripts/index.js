@@ -157,7 +157,7 @@ function handleSwipe(deltaX, deltaY) {
 
     const isHorizontalSwipe = Math.abs(deltaX) >= SWIPE_MIN_DISTANCE
         && Math.abs(deltaY) <= SWIPE_MAX_OFF_AXIS_DISTANCE;
-    const isSwipeUp = deltaY <= -SWIPE_MIN_DISTANCE
+    const isVerticalCloseSwipe = Math.abs(deltaY) >= SWIPE_MIN_DISTANCE
         && Math.abs(deltaX) <= SWIPE_MAX_OFF_AXIS_DISTANCE;
 
     if (isHorizontalSwipe) {
@@ -165,7 +165,7 @@ function handleSwipe(deltaX, deltaY) {
         return;
     }
 
-    if (isSwipeUp) {
+    if (isVerticalCloseSwipe) {
         closePopup(popupImgElement);
     }
 }
