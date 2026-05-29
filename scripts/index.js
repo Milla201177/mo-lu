@@ -155,11 +155,19 @@ function handleSwipe(deltaX, deltaY) {
         return;
     }
 
-    if (Math.abs(deltaX) < SWIPE_MIN_DISTANCE || Math.abs(deltaY) > SWIPE_MAX_OFF_AXIS_DISTANCE) {
+    const isHorizontalSwipe = Math.abs(deltaX) >= SWIPE_MIN_DISTANCE
+        && Math.abs(deltaY) <= SWIPE_MAX_OFF_AXIS_DISTANCE;
+    const isSwipeUp = deltaY <= -SWIPE_MIN_DISTANCE
+        && Math.abs(deltaX) <= SWIPE_MAX_OFF_AXIS_DISTANCE;
+
+    if (isHorizontalSwipe) {
+        showNextImage(deltaX < 0 ? 1 : -1);
         return;
     }
 
-    showNextImage(deltaX < 0 ? 1 : -1);
+    if (isSwipeUp) {
+        closePopup(popupImgElement);
+    }
 }
 
 function handlePointerDown(evt) {

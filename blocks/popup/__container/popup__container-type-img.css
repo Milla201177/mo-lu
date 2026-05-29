@@ -62,14 +62,10 @@
 @media screen and (max-width: 880px) {
     .popup__container-type-img {
         padding: 20px;
+        touch-action: none;
     }
 
     .popup__nav {
-        min-width: 36px;
-        min-height: 36px;
-    }
-
-    .popup__nav-icon {
-        font-size: 36px;
+        display: none;
     }
 }
