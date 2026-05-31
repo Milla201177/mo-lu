@@ -19,19 +19,16 @@ div.card__item::after {
     box-sizing: border-box;
 }
 
-a.card__item:hover .card__video,
 a.card__item:focus-visible .card__video {
     transform: scale(1.035);
     filter: brightness(1.04);
 }
 
-div.card__item:hover .card__img,
 div.card__item:focus-visible .card__img {
     filter: brightness(0.9);
     transform: scale(0.965);
 }
 
-div.card__item:hover::after,
 div.card__item:focus-visible::after {
     opacity: 1;
 }
@@ -43,5 +40,21 @@ div.card__item:focus-visible::after {
 @media screen and (max-width: 320px) {
     .card__item {
         max-width: 100%;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    a.card__item:hover .card__video {
+        transform: scale(1.035);
+        filter: brightness(1.04);
+    }
+
+    div.card__item:hover .card__img {
+        filter: brightness(0.9);
+        transform: scale(0.965);
+    }
+
+    div.card__item:hover::after {
+        opacity: 1;
     }
 }

@@ -31,7 +31,6 @@
     line-height: 1;
 }
 
-.header__back:hover,
 .header__back:focus-visible {
     color: #fff;
     transform: translateX(-4px);
@@ -50,5 +49,12 @@
         top: 16px;
         font-size: 12px;
         line-height: 16px;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .header__back:hover {
+        color: #fff;
+        transform: translateX(-4px);
     }
 }

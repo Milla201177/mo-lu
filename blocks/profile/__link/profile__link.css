@@ -19,7 +19,6 @@
     font-size: 20px;
 }
 
-a.profile__link:hover,
 a.profile__link:focus-visible {
     color: rgba(255, 255, 255, 0.78);
     opacity: 1;
@@ -40,5 +39,12 @@ a.profile__link:focus-visible {
 
     .profile__link-role {
         font-size: 17px;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    a.profile__link:hover {
+        color: rgba(255, 255, 255, 0.78);
+        opacity: 1;
     }
 }

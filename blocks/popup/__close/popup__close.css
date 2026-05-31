@@ -13,16 +13,18 @@
     z-index: 2;
 }
 
-.popup__close:hover {
-    transform: scale(1.08);
-    opacity: 0.8;
-}
-
 @media screen and (max-width: 880px) {
     .popup__close {
         width: 36px;
         height: 36px;
         top: max(14px, env(safe-area-inset-top));
         right: max(14px, env(safe-area-inset-right));
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .popup__close:hover {
+        transform: scale(1.08);
+        opacity: 0.8;
     }
 }

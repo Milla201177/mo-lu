@@ -35,11 +35,6 @@
     text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
 }
 
-.popup__nav:hover {
-    transform: translateY(-50%) scale(1.08);
-    color: #737b80;
-}
-
 .popup__nav:disabled {
     opacity: 0;
     pointer-events: none;
@@ -67,5 +62,12 @@
 
     .popup__nav {
         display: none;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .popup__nav:hover {
+        transform: translateY(-50%) scale(1.08);
+        color: #737b80;
     }
 }

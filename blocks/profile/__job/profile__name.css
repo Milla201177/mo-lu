@@ -14,7 +14,6 @@
     transition: opacity 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
 }
 
-a.profile__name:hover,
 a.profile__name:focus-visible {
     opacity: 1;
     transform: translateY(-1px);
@@ -30,5 +29,13 @@ a.profile__name:focus-visible {
         padding: 16px 0;
         font-size: 22px;
         line-height: 22px;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    a.profile__name:hover {
+        opacity: 1;
+        transform: translateY(-1px);
+        text-shadow: 0 0 18px rgba(255, 255, 255, 0.22);
     }
 }
