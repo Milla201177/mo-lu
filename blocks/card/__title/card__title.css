@@ -17,6 +17,10 @@
     word-break: normal;
 }
 
+.page_home .card__title {
+    color: rgba(255, 255, 255, 0.72);
+}
+
 
 @media screen and (max-width: 880px) {
     .card__title {
