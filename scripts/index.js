@@ -4,6 +4,8 @@ const popupImgCloseElement = popupImgElement?.querySelector('.popup__close_type_
 const cardImages = Array.from(document.querySelectorAll('.card__img'));
 const headerElement = document.querySelector('.header');
 const homePagePath = '../../index.html';
+const HOME_SCROLL_Y_KEY = 'moLuHomeScrollY';
+const HOME_SCROLL_TARGET_KEY = 'moLuHomeScrollTarget';
 
 let currentImageIndex = 0;
 let popupPrevButton;
@@ -16,6 +18,122 @@ let activePointerId = null;
 
 const SWIPE_MIN_DISTANCE = 48;
 const SWIPE_MAX_OFF_AXIS_DISTANCE = 80;
+
+function readSessionValue(key) {
+    try {
+        return sessionStorage.getItem(key);
+    } catch {
+        return null;
+    }
+}
+
+function writeSessionValue(key, value) {
+    try {
+        sessionStorage.setItem(key, value);
+    } catch {
+        // Ignore browsers that block sessionStorage.
+    }
+}
+
+function removeSessionValue(key) {
+    try {
+        sessionStorage.removeItem(key);
+    } catch {
+        // Ignore browsers that block sessionStorage.
+    }
+}
+
+function getPathname(value) {
+    try {
+        return new URL(value, window.location.href).pathname;
+    } catch {
+        return '';
+    }
+}
+
+function saveHomeScrollState(targetHref) {
+    if (!document.body.classList.contains('page_home')) {
+        return;
+    }
+
+    writeSessionValue(HOME_SCROLL_Y_KEY, String(window.scrollY));
+
+    if (targetHref) {
+        writeSessionValue(HOME_SCROLL_TARGET_KEY, getPathname(targetHref));
+    }
+}
+
+function findSavedHomeCard(targetPathname) {
+    if (!targetPathname) {
+        return null;
+    }
+
+    return Array.from(document.querySelectorAll('a.card__item[href]')).find((link) => (
+        getPathname(link.href) === targetPathname
+    )) || null;
+}
+
+function shouldRestoreHomeScroll(evt) {
+    const navigation = performance.getEntriesByType?.('navigation')?.[0];
+    const isBackForward = navigation?.type === 'back_forward';
+    const cameFromAlbum = getPathname(document.referrer).includes('/pages/');
+
+    return Boolean(evt?.persisted || isBackForward || cameFromAlbum);
+}
+
+function restoreHomeScrollState(evt) {
+    if (!document.body.classList.contains('page_home') || !shouldRestoreHomeScroll(evt)) {
+        return;
+    }
+
+    const savedScrollRaw = readSessionValue(HOME_SCROLL_Y_KEY);
+    const savedScrollY = savedScrollRaw === null ? NaN : Number(savedScrollRaw);
+    const savedTargetPathname = readSessionValue(HOME_SCROLL_TARGET_KEY);
+    const savedCard = findSavedHomeCard(savedTargetPathname);
+
+    if (!Number.isFinite(savedScrollY) && !savedCard) {
+        return;
+    }
+
+    const restore = () => {
+        if (Number.isFinite(savedScrollY)) {
+            window.scrollTo(0, savedScrollY);
+            return;
+        }
+
+        savedCard.scrollIntoView({ block: 'center' });
+    };
+
+    requestAnimationFrame(() => {
+        restore();
+        window.setTimeout(restore, 120);
+        window.setTimeout(() => {
+            restore();
+            removeSessionValue(HOME_SCROLL_Y_KEY);
+            removeSessionValue(HOME_SCROLL_TARGET_KEY);
+        }, 360);
+    });
+}
+
+function initHomeScrollMemory() {
+    if (!document.body.classList.contains('page_home')) {
+        return;
+    }
+
+    document.querySelectorAll('a.card__item[href]').forEach((link) => {
+        link.addEventListener('click', () => {
+            saveHomeScrollState(link.href);
+        });
+    });
+
+    window.addEventListener('pageshow', restoreHomeScrollState);
+
+    if (document.readyState === 'complete') {
+        restoreHomeScrollState();
+    } else {
+        window.addEventListener('load', restoreHomeScrollState, { once: true });
+    }
+}
 
 function openPopup(item) {
     if (!item) {
@@ -352,3 +470,4 @@ if (cardImages.length) {
 enhanceAlbumNavigation();
 enhanceAlbumMetadata();
 enhanceImagePopup();
+initHomeScrollMemory();
