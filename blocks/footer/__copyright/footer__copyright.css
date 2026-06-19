@@ -10,9 +10,6 @@
 
 a.footer__copyright:focus-visible {
     color: #8a9499;
-}
-
-a.footer__copyright:focus-visible {
     outline: none;
 }
 

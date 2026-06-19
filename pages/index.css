@@ -34,15 +34,3 @@
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-
-@media screen and (min-width: 881px) {
-    a.card__item .card__video {
-        filter: grayscale(1);
-    }
-}
-
-@media screen and (min-width: 881px) and (hover: hover) {
-    a.card__item:hover .card__video {
-        filter: grayscale(0) brightness(1.04);
-    }
-}

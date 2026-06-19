@@ -22,9 +22,6 @@
 a.profile__link:focus-visible {
     color: rgba(255, 255, 255, 0.78);
     opacity: 1;
-}
-
-a.profile__link:focus-visible {
     outline: none;
 }
 

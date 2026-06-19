@@ -18,9 +18,6 @@ a.profile__name:focus-visible {
     opacity: 1;
     transform: translateY(-1px);
     text-shadow: 0 0 18px rgba(255, 255, 255, 0.22);
-}
-
-a.profile__name:focus-visible {
     outline: none;
 }
 
