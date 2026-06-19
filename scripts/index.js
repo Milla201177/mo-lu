@@ -249,17 +249,17 @@ function enhanceAlbumNavigation() {
 
 function splitProfileLabel(text) {
     const normalizedText = text.replace(/\s+/g, ' ').trim();
-    const separatorMatch = normalizedText.match(/^(.+?)(\s*[—-]\s*)(.+)$/);
+    const separatorMatch = normalizedText.match(/^(.+?)(\s+[—-]\s+|:\s*)(.+)$/);
 
     if (separatorMatch) {
         return {
             label: separatorMatch[1].trim(),
-            separator: ' - ',
+            separator: separatorMatch[2].includes(':') ? ': ' : ' - ',
             rest: separatorMatch[3].trim(),
         };
     }
 
-    const keywordMatch = normalizedText.match(/^(Director|Set|Light(?:ing)?|Composer|Video(?: and Lighting)?|Video artist(?:s)?|Sound design|Costume designer|Set designers|Set & costume designer|Set & costumes design|Multimedia director|multimedia director|Photographer|Scenario|Choreographer|Musical designer|illustrator|choreograph|Object and costume design|inclusive theatre project|theater|Theater)\b/i);
+    const keywordMatch = normalizedText.match(/^(Director|Set|Light(?:ing)?(?: Design| design)?|Composer|Video(?: and Lighting)?|Video artist(?:s)?|Sound design|Costume designer|Set designers|Set & costume designer|Set & costumes design|Multimedia director|multimedia director|Photographer|Scenario|Choreographer|Musical designer|illustrator|choreograph|Object and costume design|inclusive theatre project|theater|Theater)\b/i);
 
     if (!keywordMatch) {
         return null;
