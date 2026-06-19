@@ -21,7 +21,7 @@ div.card__item::after {
 
 a.card__item:focus-visible .card__video {
     transform: scale(1.035);
-    filter: brightness(1.04);
+    filter: grayscale(0) brightness(1.04);
 }
 
 div.card__item:focus-visible .card__img {
@@ -43,10 +43,16 @@ div.card__item:focus-visible::after {
     }
 }
 
-@media (hover: hover) and (pointer: fine) {
+@media screen and (min-width: 881px) {
+    a.card__item .card__video {
+        filter: grayscale(1);
+    }
+}
+
+@media screen and (min-width: 881px) and (hover: hover) {
     a.card__item:hover .card__video {
         transform: scale(1.035);
-        filter: brightness(1.04);
+        filter: grayscale(0) brightness(1.04);
     }
 
     div.card__item:hover .card__img {
