@@ -14,6 +14,11 @@
     text-decoration: none;
 }
 
+.page_home .profile__add-button {
+    border-color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.72);
+}
+
 @media screen and (max-width: 880px) {
     .profile__add-button {
         width: min(100%, 282px);

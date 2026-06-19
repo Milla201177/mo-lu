@@ -14,6 +14,10 @@
     font-weight: 300;
 }
 
+.page_home .profile__link {
+    color: rgba(255, 255, 255, 0.72);
+}
+
 .profile__link-role {
     font-weight: 400;
     font-size: 18px;
@@ -46,5 +50,9 @@ a.profile__link:focus-visible {
     a.profile__link:hover {
         color: rgba(255, 255, 255, 0.78);
         opacity: 1;
+    }
+
+    .page_home a.profile__link:hover {
+        color: rgba(255, 255, 255, 0.86);
     }
 }
